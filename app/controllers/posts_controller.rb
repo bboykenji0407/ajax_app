@@ -3,13 +3,11 @@ class PostsController < ApplicationController
     # binding.pry
     @posts = Post.order(id: "DESC")
   end
- 
   #def new　必要ないのでコメントアウト
   #end
-
   def create
-    # binding.pry
-    Post.create(content: params[:content])
-    redirect_to action: :index #　追記する
-  end
+    #binding.pry
+    post = Post.create(content: params[:content]) #post =を追記、新たに投稿されたメモの内容を変数postに格納
+    render json:{ post: post }  #redirect_to action: :index renderメソッドを使ってをレスポンスで返却される
+  end                   #データフォーマットにjsonを指定
 end
